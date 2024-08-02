@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Shopping Cart</h1>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+    <main>
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <div class="cart-list">
+                {% for item in cart_items %}
+                <div class="cart-item">
+                    <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+                    <h3>{{ item.name }}</h3>
+                    <p>${{ item.price }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <h3>Total: ${{ total }}</h3>
+            <a href="{{ url_for('checkout') }}">Checkout</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 E-Commerce Website</p>
+    </footer>
+</body>
+</html>
